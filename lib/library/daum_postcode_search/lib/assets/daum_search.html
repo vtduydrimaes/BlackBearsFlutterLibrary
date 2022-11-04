@@ -1,40 +1,64 @@
 <html>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <title>주소 검색 페이지</title>
-  </head>
-  <style>
-  html,body{ margin:0; padding:0; height:100%; width:100%; }
-  #full-size{
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>주소 검색 페이지</title>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  #full-size {
     height: 100%;
     width: 100%;
     display: none;
-    overflow:hidden; /* or overflow:auto; if you want scrollbars */
+    overflow: hidden;
+    /* or overflow:auto; if you want scrollbars */
   }
-  </style>
-  <body>
+</style>
+
+<body>
   <div id="full-size">
   </div>
-  </body>
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script type="text/javascript">
-      const element_layer = document.getElementById('full-size');
+</body>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+  const element_layer = document.getElementById('full-size');
 
-      daum.postcode.load(function() {
-          new daum.Postcode({
-            oncomplete: function(data) {
-              window.flutter_inappwebview.callHandler('onSelectAddress', data);
-            },
-            width : '100%',
-            height : '100%',
-            maxSuggestItems : 5,
-            alwaysShowEngAddr: false,
-            hideMapBtn: true,
-            hideEngBtn: false,
-        }).embed(element_layer);
-        
-        element_layer.style.display = 'block';
-      });
-  </script>
+  var themeObj = {
+    bgColor: "#191919", //바탕 배경색
+    searchBgColor: "#191919", //검색창 배경색
+    contentBgColor: "#191919", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+    pageBgColor: "#191919", //페이지 배경색
+    textColor: "#FFFFFF", //기본 글자색
+    queryTextColor: "#FFFFFF" //검색창 글자색
+    //postcodeTextColor: "", //우편번호 글자색
+    //emphTextColor: "", //강조 글자색
+    //outlineColor: "", //테두리
+  };
+
+  daum.postcode.load(function () {
+    new daum.Postcode({
+      oncomplete: function (data) {
+        window.flutter_inappwebview.callHandler('onSelectAddress', data);
+      },
+      width: '100%',
+      height: '100%',
+      maxSuggestItems: 5,
+      alwaysShowEngAddr: false,
+      hideMapBtn: true,
+      hideEngBtn: false,
+      theme: themeObj
+    }).embed(element_layer);
+
+    element_layer.style.display = 'block';
+  });
+</script>
+
 </html>
