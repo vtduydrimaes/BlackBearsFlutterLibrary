@@ -49,6 +49,9 @@
       oncomplete: function (data) {
         window.flutter_inappwebview.callHandler('onSelectAddress', data);
       },
+      onsearch: function (data) {
+       window.flutter_inappwebview.callHandler('onSuggestion', data);
+      },
       width: '100%',
       height: '100%',
       maxSuggestItems: 5,

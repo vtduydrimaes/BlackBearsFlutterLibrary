@@ -107,7 +107,23 @@ class _DaumPostcodeSearchState extends State<DaumPostcodeSearch> {
                     args[0],
                   ),
                 );
-              });
+              },
+              );
+
+          webViewController.addJavaScriptHandler(
+              handlerName: 'onSuggestion',
+              callback: (args) {
+
+                // Navigator.of(context).pop(
+                //   DataModel.fromMap(
+                //     args[0],
+                //   ),
+                // );
+
+                print(">>Data suggestion: ")
+
+              },
+              );
 
           this._controller = webViewController;
         },
