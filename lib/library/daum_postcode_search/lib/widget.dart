@@ -113,15 +113,7 @@ class _DaumPostcodeSearchState extends State<DaumPostcodeSearch> {
           webViewController.addJavaScriptHandler(
               handlerName: 'onSuggestion',
               callback: (args) {
-
-                // Navigator.of(context).pop(
-                //   DataModel.fromMap(
-                //     args[0],
-                //   ),
-                // );
-
-                print(">>Data suggestion: ")
-
+                print(">>Data suggestion: ");
               },
               );
 
